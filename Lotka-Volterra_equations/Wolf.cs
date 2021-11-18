@@ -88,7 +88,7 @@ namespace LotkaVolterra_equations
                     newwolf.steps = 0;
                     break;
                 }
-                if (field[_x, _y - 1] == 0 && _y - 1 > _field.GetLength(1))
+                if (field[_x, _y - 1] == 0 && _y - 1 > 0)
                 {
                     Wolf newwolf = new Wolf(field, (_x), (_y - 1));
                     wList.Add(newwolf);
@@ -102,7 +102,7 @@ namespace LotkaVolterra_equations
                     newwolf.steps = 0;
                     break;
                 }
-                if (field[_x - 1, _y] == 0 && _x - 1 > _field.GetLength(0))
+                if (field[_x - 1, _y] == 0 && _x - 1 > 0)
                 {
                     Wolf newwolf = new Wolf(field, (_x - 1), (_y));
                     wList.Add(newwolf);
@@ -116,21 +116,21 @@ namespace LotkaVolterra_equations
                     newwolf.steps = 0;
                     break;
                 }
-                if (field[_x + 1, _y - 1] == 0 && _y - 1 > _field.GetLength(1) && _x + 1 < _field.GetLength(0))
+                if (field[_x + 1, _y - 1] == 0 && _y - 1 > 0 && _x + 1 < _field.GetLength(0))
                 {
                     Wolf newwolf = new Wolf(field, (_x +1), (_y - 1));
                     wList.Add(newwolf);
                     newwolf.steps = 0;
                     break;
                 }
-                if (field[_x - 1, _y + 1] == 0 && _y + 1 < _field.GetLength(1) && _x - 1 > _field.GetLength(0))
+                if (field[_x - 1, _y + 1] == 0 && _y + 1 < _field.GetLength(1) && _x - 1 > 0)
                 {
                     Wolf newwolf = new Wolf(field, (_x - 1), (_y + 1));
                     wList.Add(newwolf);
                     newwolf.steps = 0;
                     break;
                 }
-                if (field[_x - 1, _y - 1] == 0 && _y - 1 > _field.GetLength(1) && _x - 1 > _field.GetLength(0))
+                if (field[_x - 1, _y - 1] == 0 && _y - 1 > 0 && _x - 1 > 0)
                 {
                     Wolf newwolf = new Wolf(field, (_x - 1), (_y - 1));
                     wList.Add(newwolf);

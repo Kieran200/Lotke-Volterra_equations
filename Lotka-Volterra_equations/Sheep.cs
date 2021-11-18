@@ -18,13 +18,13 @@ namespace LotkaVolterra_equations
         {
             for (int j = 0; j < 1; j++)
             {
-                if (field[_x, _y+1] == 0 && _y + 1 < _field.GetLength(1)) 
+                if (field[_x, _y + 1] == 0 && _y + 1 < _field.GetLength(1)) 
                 {
                     Sheep newsheep = new Sheep(field, (_x), (_y + 1));
                     sList.Add(newsheep);
                     break;
                 }
-                if (field[_x, _y - 1] == 0 && _y - 1 > _field.GetLength(1)) 
+                if (field[_x, _y - 1] == 0 && _y - 1 > 0) 
                 {
                     Sheep newsheep = new Sheep(field, (_x ), (_y - 1));
                     sList.Add(newsheep);
@@ -36,7 +36,7 @@ namespace LotkaVolterra_equations
                     sList.Add(newsheep);
                     break;
                 }
-                if (field[_x-1, _y] == 0 && _x - 1 > _field.GetLength(0))
+                if (field[_x-1, _y] == 0 && _x - 1 > 0)
                 {
                     Sheep newsheep = new Sheep(field, (_x - 1), (_y));
                     sList.Add(newsheep);
@@ -48,19 +48,19 @@ namespace LotkaVolterra_equations
                     sList.Add(newsheep);
                     break;
                 }
-                if (field[_x+1, _y - 1] == 0 && _y - 1 > _field.GetLength(1) && _x + 1 < _field.GetLength(0))
+                if (field[_x+1, _y - 1] == 0 && _y - 1 > 0 && _x + 1 < _field.GetLength(0))
                 {
                     Sheep newsheep = new Sheep(field, (_x + 1), (_y - 1));
                     sList.Add(newsheep);
                     break;
                 }
-                if (field[_x-1, _y + 1] == 0 && _y + 1 < _field.GetLength(1) && _x - 1 > _field.GetLength(0))
+                if (field[_x-1, _y + 1] == 0 && _y + 1 < _field.GetLength(1) && _x - 1 > 0)
                 {
                     Sheep newsheep = new Sheep(field, (_x - 1), (_y + 1));
                     sList.Add(newsheep);
                     break;
                 }
-                if (field[_x-1, _y - 1] == 0 && _y - 1 > _field.GetLength(1) && _x - 1 > _field.GetLength(0))
+                if (field[_x-1, _y - 1] == 0 && _y - 1 > 0 && _x - 1 > 0)
                 {
                     Sheep newsheep = new Sheep(field, (_x - 1), (_y - 1));
                     sList.Add(newsheep);

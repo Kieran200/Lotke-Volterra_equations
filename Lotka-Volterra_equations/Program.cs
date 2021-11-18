@@ -33,7 +33,7 @@ namespace LotkaVolterra_equations
 
 
             while (true)       //основной цикл
-            {
+            {               
                 DrawField();
                 int M = wList.Count();
                 for (int j = 0; j < M; j++)  //едим овец
@@ -56,7 +56,7 @@ namespace LotkaVolterra_equations
                     }
                 }
 
-                for (int j = 0; j < wList.Count(); j++)
+                for (int j = 0; j < wList.Count(); j++)       //убиваем волков
                 {
                     if (wList[j].steps %  4 == 0 && wList[j].steps > 0)
                     {
