@@ -13,6 +13,7 @@ namespace LotkaVolterra_equations
         public int _y;
         public int[,] _field;
         public int TypeOfAnimal;
+        public int steps;
         public Animal(int[,] field, int x, int y)
         {
             TypeOfAnimal = 0;
@@ -20,6 +21,7 @@ namespace LotkaVolterra_equations
             _x = x;
             _y = y;
             _field[_x, _y] = TypeOfAnimal;
+            
         }
 
         public void Move(int direction, int [,] field)

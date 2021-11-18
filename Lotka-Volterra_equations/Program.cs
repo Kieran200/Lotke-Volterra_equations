@@ -18,10 +18,11 @@ namespace LotkaVolterra_equations
 
             List<Wolf> wList = new List<Wolf>();       //список волков
             List<Sheep> sList = new List<Sheep>();      //список овец
-            for (int i = 0; i < 3; i++)                           //добавляем волков
+            for (int i = 0; i < 5; i++)                           //добавляем волков
             {
                 Wolf wolf = new Wolf(field, rnd.Next(5, 15), rnd.Next(5, 15));
                 wList.Add(wolf);
+                wolf.steps = 0;
             }
             for (int i = 0; i < 6; i++)                   //добавляем овец
             {
@@ -30,34 +31,71 @@ namespace LotkaVolterra_equations
             }
             
 
+
             while (true)       //основной цикл
             {
-                countsteps += 1;
                 DrawField();
-                for (int j = 0; j < wList.Count(); j++)
+                int M = wList.Count();
+                for (int j = 0; j < M; j++)  //едим овец
                 {
+                    int CountWellFedWolfs = 0;
                     for (int i = 0; i < sList.Count(); i++)
                     {
                         wList[j].EatSheep(field, sList, i, out r);
                         if (r > 0 && i > 0)
+                        {
                             i -= r;
+                            CountWellFedWolfs += 1;
+                        }
                         else if (r > 0)
                             i = 0;
                     }
+                    if (CountWellFedWolfs > 0)       //множим волков
+                    {
+                        wList[j].Reproproduction(wList, field);
+                    }
                 }
-                Console.ReadKey();
-                DrawField();
+
                 for (int j = 0; j < wList.Count(); j++)
                 {
-                    wList[j].Move(rnd.Next(0, 4),field);
+                    if (wList[j].steps %  4 == 0 && wList[j].steps > 0)
+                    {
+                        field[(wList[j]._x), (wList[j]._y)] = 0;
+                        wList.RemoveAt(j);
+                        if (j - 1 >= 0)
+                            j--;
+                        else if (j - 1 < 0)
+                            j = 0;
+                    }
                 }
-                for (int i = 0; i < sList.Count(); i++)
+
+                if (countsteps > 0 && countsteps % 5 == 0)         //множим овец
+                {
+                    int N = sList.Count();
+                    for (int i = 0; i < N; i++)
+                    {
+                        sList[i].Reproproduction(sList, field);
+                    }
+                }
+
+                Console.ReadKey();   // дополнительная отрисовка поля (проверка на съедение овец)
+                DrawField();
+
+                for (int j = 0; j < wList.Count(); j++)  //волки ходят
+                {
+                    wList[j].Move(rnd.Next(0, 4),field);
+                    wList[j].steps += 1;
+                }
+                for (int i = 0; i < sList.Count(); i++)   //овцы ходят
                 {
                     sList[i].Move(rnd.Next(0, 4),field);
                 }
-                
                 Console.ReadKey();
+                countsteps += 1;
             }
+
+
+
 
             void DrawField()        //метод вырисовки поля
             {
@@ -68,6 +106,8 @@ namespace LotkaVolterra_equations
                     {
                         if (field[i, j] == 1)
                             Console.ForegroundColor = ConsoleColor.Yellow;
+                        if (field[i, j] == 0)
+                            Console.ForegroundColor = ConsoleColor.Green;
                         if (field[i, j] == 2)
                             Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(field[i, j]);

@@ -76,5 +76,68 @@ namespace LotkaVolterra_equations
                 }
             }
         }
-    }                 
+
+        public void Reproproduction(List<Wolf> wList, int[,] field)
+        {
+            for (int j = 0; j < 1; j++)
+            {
+                if (field[_x, _y + 1] == 0 && _y + 1 < _field.GetLength(1))
+                {
+                    Wolf newwolf = new Wolf(field, (_x), (_y + 1));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x, _y - 1] == 0 && _y - 1 > _field.GetLength(1))
+                {
+                    Wolf newwolf = new Wolf(field, (_x), (_y - 1));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x + 1, _y] == 0 && _x + 1 < _field.GetLength(0))
+                {
+                    Wolf newwolf = new Wolf(field, (_x + 1), (_y));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x - 1, _y] == 0 && _x - 1 > _field.GetLength(0))
+                {
+                    Wolf newwolf = new Wolf(field, (_x - 1), (_y));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x + 1, _y + 1] == 0 && _y + 1 < _field.GetLength(1) && _x + 1 < _field.GetLength(0))
+                {
+                    Wolf newwolf = new Wolf(field, (_x + 1), (_y + 1));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x + 1, _y - 1] == 0 && _y - 1 > _field.GetLength(1) && _x + 1 < _field.GetLength(0))
+                {
+                    Wolf newwolf = new Wolf(field, (_x +1), (_y - 1));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x - 1, _y + 1] == 0 && _y + 1 < _field.GetLength(1) && _x - 1 > _field.GetLength(0))
+                {
+                    Wolf newwolf = new Wolf(field, (_x - 1), (_y + 1));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+                if (field[_x - 1, _y - 1] == 0 && _y - 1 > _field.GetLength(1) && _x - 1 > _field.GetLength(0))
+                {
+                    Wolf newwolf = new Wolf(field, (_x - 1), (_y - 1));
+                    wList.Add(newwolf);
+                    newwolf.steps = 0;
+                    break;
+                }
+            }
+        }
+    }
 }
