@@ -29,7 +29,7 @@ namespace LotkaVolterra_equations
             {
                 case 0:
                     {
-                        if (_x+1 <= _field.GetLength(0) && field [_x+1,_y] == 0)
+                        if (_x+1 <= (_field.GetLength(0)-1) && field [_x+1,_y] == 0)
                         {
                             _x = _x +1;
                             break;
@@ -38,7 +38,7 @@ namespace LotkaVolterra_equations
                     }
                 case 1:
                     {
-                        if (_x-1 >= _field.GetLength(0) && field[_x-1, _y] == 0)
+                        if (_x-1 >= (_field.GetLength(0)-1) && field[_x-1, _y] == 0)
                         {
                             _x = _x -1;
                             break;
@@ -47,7 +47,7 @@ namespace LotkaVolterra_equations
                     }
                 case 2:
                     {
-                        if (_y-1 >= _field.GetLength(1) && field[_x, _y-1] == 0)
+                        if (_y-1 >= (_field.GetLength(1)-1) && field[_x, _y-1] == 0)
                         {
                             _y = _y -1;
                             break;
@@ -56,7 +56,7 @@ namespace LotkaVolterra_equations
                     }
                 case 3:
                     {
-                        if (_y+1 <= _field.GetLength(1) && field[_x, _y+1] == 0)
+                        if (_y+1 <= (_field.GetLength(1)-1) && field[_x, _y+1] == 0)
                         {
                             _y = _y + 1;
                             break;
