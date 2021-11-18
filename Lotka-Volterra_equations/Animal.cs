@@ -22,43 +22,43 @@ namespace LotkaVolterra_equations
             _field[_x, _y] = TypeOfAnimal;
         }
 
-        public void Move(int direction)
+        public void Move(int direction, int [,] field)
         {
             _field[_x, _y] = 0;
             switch (direction)
             {
                 case 0:
                     {
-                        if (_x++ <= _field.GetLength(0))
+                        if (_x+1 <= _field.GetLength(0) && field [_x+1,_y] == 0)
                         {
-                            _x++;
+                            _x = _x +1;
                             break;
                         }
                         else break;
                     }
                 case 1:
                     {
-                        if (_x-- >= _field.GetLength(0))
+                        if (_x-1 >= _field.GetLength(0) && field[_x-1, _y] == 0)
                         {
-                            _x--;
+                            _x = _x -1;
                             break;
                         }
                         else break;
                     }
                 case 2:
                     {
-                        if (_y-- >= _field.GetLength(1))
+                        if (_y-1 >= _field.GetLength(1) && field[_x, _y-1] == 0)
                         {
-                            _y--;
+                            _y = _y -1;
                             break;
                         }
                         else break;   
                     }
                 case 3:
                     {
-                        if (_y++ <= _field.GetLength(1))
+                        if (_y+1 <= _field.GetLength(1) && field[_x, _y+1] == 0)
                         {
-                            _y++;
+                            _y = _y + 1;
                             break;
                         }
                         else break;

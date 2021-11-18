@@ -12,33 +12,33 @@ namespace LotkaVolterra_equations
         static void Main(string[] args)
         {
             int r = 0;
-            int countsteps = 0;
-            int[,] field = new int[20, 20];
+            int countsteps = 0;      //счет ходов
+            int[,] field = new int[20, 20];   //наше поле :)
             Random rnd = new Random();
 
-            List<Wolf> wList = new List<Wolf>();
-            List<Sheep> sList = new List<Sheep>();
-            for (int i = 0; i < 3; i++)
+            List<Wolf> wList = new List<Wolf>();       //список волков
+            List<Sheep> sList = new List<Sheep>();      //список овец
+            for (int i = 0; i < 3; i++)                           //добавляем волков
             {
                 Wolf wolf = new Wolf(field, rnd.Next(5, 15), rnd.Next(5, 15));
                 wList.Add(wolf);
             }
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)                   //добавляем овец
             {
                 Sheep sheep = new Sheep(field, rnd.Next(5, 15), rnd.Next(5, 15));
                 sList.Add(sheep);
             }
             
 
-            while (true)
+            while (true)       //основной цикл
             {
                 countsteps += 1;
                 DrawField();
-                foreach (var wolf in wList)
+                for (int j = 0; j < wList.Count(); j++)
                 {
                     for (int i = 0; i < sList.Count(); i++)
                     {
-                        wolf.EatSheep(field, sList, i, out r);
+                        wList[j].EatSheep(field, sList, i, out r);
                         if (r > 0 && i > 0)
                             i -= r;
                         else if (r > 0)
@@ -47,18 +47,19 @@ namespace LotkaVolterra_equations
                 }
                 Console.ReadKey();
                 DrawField();
-                foreach (var wolf in wList)
+                for (int j = 0; j < wList.Count(); j++)
                 {
-                    wolf.Move(rnd.Next(0, 4));
+                    wList[j].Move(rnd.Next(0, 4),field);
                 }
-                foreach (var sheep in sList)
+                for (int i = 0; i < sList.Count(); i++)
                 {
-                    sheep.Move(rnd.Next(0, 4));
+                    sList[i].Move(rnd.Next(0, 4),field);
                 }
+                
                 Console.ReadKey();
             }
 
-            void DrawField()
+            void DrawField()        //метод вырисовки поля
             {
                 Console.Clear();
                 for (int j = 0; j < field.GetLength(0); j++)
