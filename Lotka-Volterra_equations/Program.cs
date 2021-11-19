@@ -13,7 +13,7 @@ namespace LotkaVolterra_equations
         {
             int r = 0;
             int countsteps = 0;      //счет ходов
-            int[,] field = new int[20, 20];   //наше поле :)
+            int[,] field = new int[22, 22]; //наше поле :)
             Random rnd = new Random();
 
             List<Wolf> wList = new List<Wolf>();       //список волков
@@ -35,8 +35,8 @@ namespace LotkaVolterra_equations
             while (true)       //основной цикл
             {               
                 DrawField();
-                int M = wList.Count();
-                for (int j = 0; j < M; j++)  //едим овец
+                int P = wList.Count();
+                for (int j = 0; j < P; j++)  //едим овец
                 {
                     int CountWellFedWolfs = 0;
                     for (int i = 0; i < sList.Count(); i++)
@@ -71,8 +71,8 @@ namespace LotkaVolterra_equations
 
                 if (countsteps > 0 && countsteps % 5 == 0)         //множим овец
                 {
-                    int N = sList.Count();
-                    for (int i = 0; i < N; i++)
+                    int R = sList.Count();
+                    for (int i = 0; i < R; i++)
                     {
                         sList[i].Reproproduction(sList, field);
                     }
@@ -100,9 +100,9 @@ namespace LotkaVolterra_equations
             void DrawField()        //метод вырисовки поля
             {
                 Console.Clear();
-                for (int j = 0; j < field.GetLength(0); j++)
+                for (int j = 1; j < field.GetLength(0) - 1; j++)
                 {
-                    for (int i = 0; i < field.GetLength(1); i++)
+                    for (int i = 1; i < field.GetLength(1) - 1; i++)
                     {
                         if (field[i, j] == 1)
                             Console.ForegroundColor = ConsoleColor.Yellow;
